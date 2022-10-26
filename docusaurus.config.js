@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Financial Playground',
   tagline: 'Experiment with your money',
-  url: 'https://clayreimann.github.io/financial-playground',
-  baseUrl: '/',
+  url: 'https://clayreimann.github.io/',
+  baseUrl: '/financial-playground/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
