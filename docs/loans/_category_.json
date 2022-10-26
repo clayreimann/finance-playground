@@ -1,0 +1,9 @@
+{
+    "label": "Loans",
+    "position": 1,
+    "link": {
+      "type": "generated-index",
+      "description": "Various loan calculators and comparisons."
+    }
+  }
+  
