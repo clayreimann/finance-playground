@@ -1,0 +1,36 @@
+---
+sidebar: 1
+---
+
+# Loan Payment Comparison
+
+import { useState } from 'react';
+import PaymentCalculator from "@site/src/components/loans/payment-calculator";
+
+export const PaymentComparison = () => {
+    const [count, setCount] = useState(1);
+    let lastRow = [];
+    const addItem = item => {
+        if (lastRow.length < 2) lastRow.push(item)
+        else {
+            lastRow = [item]
+            rows.push(lastRow)
+        }
+    }
+    const rows = [lastRow];
+    for (let i = 0; i < count; i++) {
+        addItem(<PaymentCalculator key={i} />)
+    }
+    addItem(
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%'}} onClick={() => setCount(count + 1)}>
+            <a>New Comparison</a>
+        </div>
+    )
+    return (
+        <Grid>
+            {rows.map(row => <Row className='margin-top--md'>{row.map(el => <Col size='6'>{el}</Col>)}</Row>)}
+        </Grid>
+    )
+}
+
+<PaymentComparison />
