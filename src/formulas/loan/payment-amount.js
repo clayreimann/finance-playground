@@ -1,5 +1,7 @@
 import numeral from "numeral";
 
+import { roundCurrency } from "../rounding";
+
 /**
  * Compute the payment amount for a loan.
  * @param {number} value the loan amount
@@ -9,8 +11,8 @@ import numeral from "numeral";
  */
 function PaymentAmount(value, apr, periods, asNumeral = false) {
     const periodicRate = apr / 12
-    const rounded = numeral((periodicRate * value) / (1 - Math.pow((1 + periodicRate), -1 * periods))).format('$0,000.00')
-    return asNumeral ? numeral(rounded) : numeral(rounded).value();
+    const rounded = roundCurrency((periodicRate * value) / (1 - Math.pow((1 + periodicRate), -1 * periods)))
+    return asNumeral ? rounded : rounded.value();
 }
 
 export const computePayment = PaymentAmount;

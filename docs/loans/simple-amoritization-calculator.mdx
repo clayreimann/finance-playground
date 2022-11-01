@@ -3,3 +3,54 @@ sidebar_position: 1
 ---
 
 # Amortization Calculator
+
+import {useState} from 'react';
+import numeral from 'numeral';
+import {MONEY_FMT} from '@site/src/components/form/inputs'
+import {computePayment} from '@site/src/formulas/loan'
+
+export const AmortizationTable = () => {
+    const [price, setPrice] = useState(numeral(100_000).format(MONEY_FMT));
+    const [downPayment, setDownPayment] = useState(numeral(20_000).format(MONEY_FMT));
+    const [apr, setApr] = useState('5.000 %');
+    const [months, setMonths] = useState(360);
+    const _price = numeral(price)
+    const _downPayment = numeral(downPayment)
+    const _apr = numeral(apr)
+    const _loanAmount = numeral(_price.value() - _downPayment.value())
+    const _monthlyPayment = computePayment(_loanAmount.value(), _apr.value(), months, true)
+    return (
+        <div>
+            <form>
+                <Grid>
+                    <Row>
+                        <Col>Purchase Price</Col>
+                        <Col><CurrencyInput value={price} onChange={setPrice} /></Col>
+                    </Row>
+                    <Row>
+                        <Col>Down Payment</Col>
+                        <Col><CurrencyInput value={downPayment} onChange={setDownPayment} /></Col>
+                    </Row>
+                    <Row>
+                        <Col><i>Loan Amount</i></Col>
+                        <Col><DisplayInput value={_loanAmount} money /></Col>
+                    </Row>
+                    <Row>
+                        <Col>APR</Col>
+                        <Col><PercentageInput value={apr} onChange={setApr} /></Col>
+                    </Row>
+                    <Row>
+                        <Col>Term (months)</Col>
+                        <Col><DurationInput months={months} onChange={setMonths} /></Col>
+                    </Row>
+                    <Row>
+                        <Col><i>Monthly Payment</i></Col>
+                        <Col><DisplayInput value={_monthlyPayment} money /></Col>
+                    </Row>
+                </Grid>
+            </form>
+        </div>
+    )
+}
+
+<AmortizationTable />
