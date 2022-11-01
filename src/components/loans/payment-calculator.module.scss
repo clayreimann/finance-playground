@@ -1,16 +1,3 @@
-.main {
-    input {
-        font-size: 1rem;
-        text-align: end;
-        display: block;
-
-        &:disabled {
-            border: none;
-            background-color: inherit;
-        }
-    }
-}
-
 .label {
     text-align: end;
 }
